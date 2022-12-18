@@ -45,21 +45,14 @@ export default (state = initialState,action ) => {
         case 'CHANGE':{
             return {
                 ...state,
-                todos:state.todos.map((item) => {
-                    if(item.id === action.id){
-                        return {
-                            ...item,isChange: !item.isChange
-                        }
-                    }
-                    return item
-                })
+                todos: [...state.todos,{title: action.title,
+                    id: state.todos.length ? state.todos[state.todos.length - 1].id + 1 : 1}]
+             
             }
         }
-            
         default: return state
     }
 }
-
 export const addTodo = (title) => {
     return (dispatch) => {
         return dispatch({type: "ADD" , title})
@@ -75,8 +68,8 @@ export const importantTodo = (id) => {
         return dispatch({type: "IMPORTANT" , id})
     }
 }
-export const changeTodo = (id) => {
+export const changeTodo = (title) => {
      return (dispatch) => {
-        return dispatch ({type: "CHANGE" , id})
+        return dispatch ({type: "CHANGE" , title})
      }
 }

@@ -22,6 +22,10 @@ function App() {
           <br /> 
 
           <input onChange={(e) => setchangeTodolist(e.target.value)} value={changetodolist}  type="text" /> 
+          <button type='button' style={{margin:'0 40px'}} onClick={() => {dispatch(changeTodo(changetodolist))
+              // setchangeTodolist(item.title)
+              console.log('changed');
+              }} >Change</button>
 
 
           <div>
@@ -33,13 +37,12 @@ function App() {
         <ul>
           {
             todos.map((item) => (
+              
               <li style={{margin: '20px 0', color: item.isImportant ? 'red' : ''} }  key={item.id}>{item.title} 
               <button type='button' style={{margin:'0 40px'}} onClick={() => {dispatch(deleteTodo(item.id))}}>delete</button> 
               <button type='button' onClick={() => dispatch(importantTodo(item.id))}>important</button>
-              <button type='button' style={{margin:'0 40px'}} onClick={() => {(changeTodo(changetodolist))
-              setchangeTodolist('')
-             
-
+              <button type='button' style={{margin:'0 40px'}} onClick={() => {
+              setchangeTodolist(item.title)
               console.log('changed');
               }} >Change</button>
                 </li>
